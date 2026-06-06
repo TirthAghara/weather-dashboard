@@ -1,0 +1,38 @@
+<div *ngIf="weather" class="flex flex-col p-8 bg-white rounded shadow border border-gray-200 animate-fadeIn mb-8">
+  <div class="flex justify-between items-end mb-6 pb-4 border-b border-gray-200">
+    <h2 class="text-2xl font-semibold text-[#eb6e4b] m-0">{{ weather.name }}, {{ weather.sys.country }}</h2>
+    <div class="text-base text-gray-500">{{ weather.dt * 1000 | date:'EEEE, MMM d, y, h:mm a' }}</div>
+  </div>
+
+  <div class="flex items-center gap-8 mb-8">
+    <div class="w-24 h-24">
+      <img [src]="getIconUrl(weather.weather[0].icon)" [alt]="weather.weather[0].description" class="w-full h-auto">
+    </div>
+    <div class="flex flex-col">
+      <div class="text-6xl font-bold leading-none text-gray-800">{{ weather.main.temp | number:'1.0-0' }}°C</div>
+      <div class="text-xl text-gray-500 capitalize mt-2">{{ weather.weather[0].description }}</div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-2 gap-6">
+    <div class="flex flex-col gap-2">
+      <div class="text-sm text-gray-500 uppercase">Feels Like</div>
+      <div class="text-lg font-semibold text-gray-800">{{ weather.main.feels_like | number:'1.0-0' }}°C</div>
+    </div>
+    
+    <div class="flex flex-col gap-2">
+      <div class="text-sm text-gray-500 uppercase">Humidity</div>
+      <div class="text-lg font-semibold text-gray-800">{{ weather.main.humidity }}%</div>
+    </div>
+
+    <div class="flex flex-col gap-2">
+      <div class="text-sm text-gray-500 uppercase">Wind Speed</div>
+      <div class="text-lg font-semibold text-gray-800">{{ weather.wind.speed }} m/s</div>
+    </div>
+
+    <div class="flex flex-col gap-2">
+      <div class="text-sm text-gray-500 uppercase">Pressure</div>
+      <div class="text-lg font-semibold text-gray-800">{{ weather.main.pressure }} hPa</div>
+    </div>
+  </div>
+</div>
